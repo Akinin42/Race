@@ -1,4 +1,4 @@
-package akinin.igor;
+package formula1.announcer;
 
 import java.time.Duration;
 import java.util.Collections;
@@ -6,20 +6,19 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RaceResultsFormatter {
+public class RacersFormatter {
 
     private static final char WHITESPACE = ' ';
     private static final char HYPHEN = '-';
 
-    public String format(List<Racer> raceResults) {        
+    public String format(List<Racer> racers) {        
         StringBuilder result = new StringBuilder();
-        List<Racer> racers = raceResults;
-        racers.sort(Comparator.comparing(Racer::getLapTime));
+        Collections.sort(racers, Comparator.comparing(Racer::getLapTime));
         int nameLineLength = Collections.max(racers.stream().map(Racer::getName).collect(Collectors.toList()),
                 Comparator.comparing(String::length)).length();
         int teamLineLength = Collections.max(racers.stream().map(Racer::getTeam).collect(Collectors.toList()),
                 Comparator.comparing(String::length)).length();
-        raceResults.stream().forEach(racer -> {
+        racers.forEach(racer -> {
             if (racers.indexOf(racer) == 15) {
                 result.append(FormatUtil.appendSymbolTimes(HYPHEN, nameLineLength + teamLineLength + 17)).append("\n");
             }

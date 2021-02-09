@@ -1,4 +1,4 @@
-package akinin.igor;
+package formula1.announcer;
 
 import java.time.Duration;
 
@@ -8,8 +8,7 @@ public class Racer {
     private String team;
     private Duration lapTime;
 
-    public Racer(String name, String team, Duration lapTime) {
-        super();
+    public Racer(String name, String team, Duration lapTime) {        
         this.name = name;
         this.team = team;
         this.lapTime = lapTime;

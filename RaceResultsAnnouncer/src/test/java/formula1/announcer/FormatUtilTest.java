@@ -1,4 +1,4 @@
-package akinin.igor;
+package formula1.announcer;
 
 import static org.junit.Assert.assertEquals;
 

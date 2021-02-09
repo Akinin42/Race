@@ -1,4 +1,4 @@
-package akinin.igor;
+package formula1.announcer;
 
 public final class FormatUtil {
     
@@ -6,10 +6,10 @@ public final class FormatUtil {
     }
     
     public static String appendSymbolTimes(char symbol, int length) {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder result = new StringBuilder();
         for (int i = 0; i < length; i++) {
-            sb.append(symbol);
+            result.append(symbol);
         }
-        return sb.toString();
+        return result.toString();
     }     
 }

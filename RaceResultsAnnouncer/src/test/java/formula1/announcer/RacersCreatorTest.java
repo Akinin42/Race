@@ -1,21 +1,22 @@
-package akinin.igor;
+package formula1.announcer;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.FileNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class RaceResultsCalculatorTest {
+class RacersCreatorTest {
 
-    private RaceResultsCalculator calculator;
+    private RacersCreator creator;
 
     @BeforeEach
-    void createNewCalculator() {
-        calculator = new RaceResultsCalculator();
+    void createNewCreator() {
+        creator = new RacersCreator();
     }
 
     @Test
-    void getRaceResult_ShouldReturnExpectedRacersList() {
+    void getRacers_ShouldReturnExpectedRacersList() throws FileNotFoundException {
         String expected = "[Daniel Ricciardo,RED BULL RACING TAG HEUER,PT1M12.013S][Sebastian Vettel,FERRARI,PT1M4.415S]"
                 + "[Lewis Hamilton,MERCEDES,PT1M12.46S][Kimi Raikkonen,FERRARI,PT1M12.639S][Valtteri Bottas,MERCEDES,PT1M12.434S]"
                 + "[Esteban Ocon,FORCE INDIA MERCEDES,PT1M13.028S][Fernando Alonso,MCLAREN RENAULT,PT1M12.657S]"
@@ -25,10 +26,10 @@ class RaceResultsCalculatorTest {
                 + "[Charles Leclerc,SAUBER FERRARI,PT1M12.829S][Romain Grosjean,HAAS FERRARI,PT1M12.93S]"
                 + "[Brendon Hartley,SCUDERIA TORO ROSSO HONDA,PT1M13.179S][Marcus Ericsson,SAUBER FERRARI,PT1M13.265S]"
                 + "[Lance Stroll,WILLIAMS MERCEDES,PT1M13.323S][Kevin Magnussen,HAAS FERRARI,PT1M13.393S]";
-        StringBuilder sb = new StringBuilder();
-        calculator.getRaceResult().stream().forEach(
-                racer -> sb.append(String.format("[%s,%s,%s]", racer.getName(), racer.getTeam(), racer.getLapTime())));
-        String actual = sb.toString();
+        StringBuilder racers = new StringBuilder();
+        creator.getRacers().stream().forEach(
+                racer -> racers.append(String.format("[%s,%s,%s]", racer.getName(), racer.getTeam(), racer.getLapTime())));
+        String actual = racers.toString();
         assertEquals(expected, actual);
-    }    
+    }  
 }

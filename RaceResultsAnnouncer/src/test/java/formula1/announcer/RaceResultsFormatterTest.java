@@ -1,23 +1,25 @@
-package akinin.igor;
+package formula1.announcer;
 
 import static org.junit.Assert.assertEquals;
+
+import java.io.FileNotFoundException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class RaceResultsFormatterTest {
     
-    private RaceResultsCalculator calculator;
-    private RaceResultsFormatter formatter;
+    private RacersCreator creator;
+    private RacersFormatter formatter;
 
     @BeforeEach
     void createNewFormatter() {
-        formatter = new RaceResultsFormatter();
-        calculator = new RaceResultsCalculator();
+        formatter = new RacersFormatter();
+        creator = new RacersCreator();
     }
 
     @Test
-    void format_ShouldReturnFormatedResult_WhenInputRacersList() {
+    void format_ShouldReturnFormatedResult_WhenInputRacersList() throws FileNotFoundException {
         String expected = "01.Sebastian Vettel  | FERRARI                   | 1:04.415\r\n"
                 + "02.Daniel Ricciardo  | RED BULL RACING TAG HEUER | 1:12.013\r\n"
                 + "03.Valtteri Bottas   | MERCEDES                  | 1:12.434\r\n"
@@ -38,7 +40,7 @@ class RaceResultsFormatterTest {
                 + "17.Marcus Ericsson   | SAUBER FERRARI            | 1:13.265\r\n"
                 + "18.Lance Stroll      | WILLIAMS MERCEDES         | 1:13.323\r\n"
                 + "19.Kevin Magnussen   | HAAS FERRARI              | 1:13.393\r\n";
-        String actual = formatter.format(calculator.getRaceResult());
+        String actual = formatter.format(creator.getRacers());
         assertEquals(expected, actual);
     }
 }
