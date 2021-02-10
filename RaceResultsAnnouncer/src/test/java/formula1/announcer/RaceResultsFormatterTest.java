@@ -2,13 +2,19 @@ package formula1.announcer;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.FileNotFoundException;
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import formula1.resultscounter.Racer;
+import formula1.resultscounter.RacersCreator;
+import formula1.resultscounter.RacersFormatter;
+
 class RaceResultsFormatterTest {
-    
+
     private RacersCreator creator;
     private RacersFormatter formatter;
 
@@ -19,7 +25,7 @@ class RaceResultsFormatterTest {
     }
 
     @Test
-    void format_ShouldReturnFormatedResult_WhenInputRacersList() throws FileNotFoundException {
+    void format_ShouldReturnFormattedResult_WhenInputRacersList() {
         String expected = "01.Sebastian Vettel  | FERRARI                   | 1:04.415\r\n"
                 + "02.Daniel Ricciardo  | RED BULL RACING TAG HEUER | 1:12.013\r\n"
                 + "03.Valtteri Bottas   | MERCEDES                  | 1:12.434\r\n"
@@ -41,6 +47,19 @@ class RaceResultsFormatterTest {
                 + "18.Lance Stroll      | WILLIAMS MERCEDES         | 1:13.323\r\n"
                 + "19.Kevin Magnussen   | HAAS FERRARI              | 1:13.393\r\n";
         String actual = formatter.format(creator.getRacers());
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void format_ShouldReturnFormattedResult_WhenInputSomeRacers() {
+        String expected = "01.Sebastian Vettel | FERRARI | 1:04.415\r\n"
+                + "02.Sebastian Vettel | FERRARI | 1:04.415\r\n"
+                + "03.Sebastian Vettel | FERRARI | 1:04.415\r\n";
+        List<Racer> racers = new ArrayList<>();
+        racers.add(new Racer("Sebastian Vettel", "FERRARI", Duration.ofSeconds(64, 415000000)));
+        racers.add(new Racer("Sebastian Vettel", "FERRARI", Duration.ofSeconds(64, 415000000)));
+        racers.add(new Racer("Sebastian Vettel", "FERRARI", Duration.ofSeconds(64, 415000000)));
+        String actual = formatter.format(racers);
         assertEquals(expected, actual);
     }
 }

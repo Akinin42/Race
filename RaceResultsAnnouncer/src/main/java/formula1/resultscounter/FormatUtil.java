@@ -1,4 +1,4 @@
-package formula1.announcer;
+package formula1.resultscounter;
 
 public final class FormatUtil {
     
