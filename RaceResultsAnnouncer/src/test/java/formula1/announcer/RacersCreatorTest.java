@@ -6,10 +6,8 @@ import java.io.FileNotFoundException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import formula1.resultscounter.Racer;
 import formula1.resultscounter.RacersCreator;
 
@@ -44,7 +42,7 @@ class RacersCreatorTest {
         expected.add(new Racer("Marcus Ericsson", "SAUBER FERRARI", Duration.ofSeconds(73, 265000000)));
         expected.add(new Racer("Lance Stroll", "WILLIAMS MERCEDES", Duration.ofSeconds(73, 323000000)));
         expected.add(new Racer("Kevin Magnussen", "HAAS FERRARI", Duration.ofSeconds(73, 393000000)));   
-        List<Racer> actual = creator.getRacers();
+        List<Racer> actual = creator.getRacers("start.log", "end.log");
         assertIterableEquals(expected, actual);
     }  
 }
