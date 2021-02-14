@@ -1,4 +1,4 @@
-package formula1.announcer;
+package formula1.resultsCalculator;
 
 import static org.junit.Assert.assertEquals;
 
@@ -8,10 +8,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import formula1.resultscounter.Racer;
-import formula1.resultscounter.RacersCreator;
-import formula1.resultscounter.RacersFormatter;
 
 class RaceResultsFormatterTest {
 
@@ -46,7 +42,8 @@ class RaceResultsFormatterTest {
                 + "17.Marcus Ericsson   | SAUBER FERRARI            | 1:13.265\r\n"
                 + "18.Lance Stroll      | WILLIAMS MERCEDES         | 1:13.323\r\n"
                 + "19.Kevin Magnussen   | HAAS FERRARI              | 1:13.393\r\n";
-        String actual = formatter.format(creator.getRacers("start.log", "end.log"));
+        List<Racer> racers = creator.createRacers("start.log", "end.log");
+        String actual = formatter.format(racers);
         assertEquals(expected, actual);
     }
 

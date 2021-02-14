@@ -1,10 +1,10 @@
-package formula1.resultscounter;
+package formula1.resultsCalculator;
 
-public class RacersResultsLauncher {
+public class RacersLauncher {
 
     public static void main(String[] args) {
         RacersCreator creator = new RacersCreator();
         RacersFormatter formatter = new RacersFormatter();
-        System.out.println(formatter.format(creator.getRacers("start.log", "end.log")));
+        System.out.println(formatter.format(creator.createRacers("start.log", "end.log")));
     }
 }

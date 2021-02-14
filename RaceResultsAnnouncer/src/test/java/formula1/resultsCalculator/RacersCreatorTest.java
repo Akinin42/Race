@@ -1,15 +1,13 @@
-package formula1.announcer;
+package formula1.resultsCalculator;
 
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.io.FileNotFoundException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import formula1.resultscounter.Racer;
-import formula1.resultscounter.RacersCreator;
 
 class RacersCreatorTest {
 
@@ -21,7 +19,7 @@ class RacersCreatorTest {
     }
 
     @Test
-    void getRacers_ShouldReturnExpectedRacersList() throws FileNotFoundException {
+    void createRacers_ShouldReturnExpectedRacersList() {
         List<Racer> expected = new ArrayList<>();
         expected.add(new Racer("Daniel Ricciardo", "RED BULL RACING TAG HEUER", Duration.ofSeconds(72, 13000000)));
         expected.add(new Racer("Sebastian Vettel", "FERRARI", Duration.ofSeconds(64, 415000000)));
@@ -41,8 +39,18 @@ class RacersCreatorTest {
         expected.add(new Racer("Brendon Hartley", "SCUDERIA TORO ROSSO HONDA", Duration.ofSeconds(73, 179000000)));
         expected.add(new Racer("Marcus Ericsson", "SAUBER FERRARI", Duration.ofSeconds(73, 265000000)));
         expected.add(new Racer("Lance Stroll", "WILLIAMS MERCEDES", Duration.ofSeconds(73, 323000000)));
-        expected.add(new Racer("Kevin Magnussen", "HAAS FERRARI", Duration.ofSeconds(73, 393000000)));   
-        List<Racer> actual = creator.getRacers("start.log", "end.log");
+        expected.add(new Racer("Kevin Magnussen", "HAAS FERRARI", Duration.ofSeconds(73, 393000000)));
+        List<Racer> actual = creator.createRacers("start.log", "end.log");
         assertIterableEquals(expected, actual);
-    }  
+    }
+
+    @Test
+    void parseTimesFile_ShouldThrowIllegalArgumentException_WhenFileIncorrectFormat() {
+        assertThrows(IllegalArgumentException.class, () -> creator.parseTimesFile("incorrectFormat.log"));
+    }
+
+    @Test
+    void createRacers_ShouldThrowIllegalArgumentException_WhenNull() {
+        assertThrows(IllegalArgumentException.class, () -> creator.createRacers(null, null));
+    }
 }

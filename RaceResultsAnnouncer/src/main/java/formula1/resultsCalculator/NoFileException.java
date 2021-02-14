@@ -1,4 +1,4 @@
-package formula1.resultscounter;
+package formula1.resultsCalculator;
 
 public class NoFileException extends RuntimeException {
 

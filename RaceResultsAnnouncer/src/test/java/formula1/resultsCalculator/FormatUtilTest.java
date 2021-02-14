@@ -1,9 +1,8 @@
-package formula1.announcer;
+package formula1.resultsCalculator;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.jupiter.api.Test;
-import formula1.resultscounter.FormatUtil;
 
 class FormatUtilTest {
 
