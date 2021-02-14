@@ -14,11 +14,14 @@ public class RacersFormatter {
 
     public String format(List<Racer> racers) {
         StringBuilder result = new StringBuilder();
-        int nameLineLength = Collections.max(racers.stream().map(Racer::getName).collect(Collectors.toList()),
-                Comparator.comparing(String::length)).length();
-        int teamLineLength = Collections.max(racers.stream().map(Racer::getTeam).collect(Collectors.toList()),
-                Comparator.comparing(String::length)).length();
-        racers.stream().sorted(Comparator.comparing(Racer::getLapTime)).forEach(racer -> {
+        int nameLineLength = Collections.max(racers.stream()
+                .map(Racer::getName)
+                .collect(Collectors.toList()), Comparator.comparing(String::length)).length();
+        int teamLineLength = Collections.max(racers.stream()
+                .map(Racer::getTeam)
+                .collect(Collectors.toList()), Comparator.comparing(String::length)).length();
+        racers.stream().sorted(Comparator.comparing(Racer::getLapTime))
+        .forEach(racer -> {
             if (index == 15) {
                 result.append(FormatUtil.appendSymbolTimes(HYPHEN, nameLineLength + teamLineLength + 17)).append("\n");
             }

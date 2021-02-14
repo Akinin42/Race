@@ -1,6 +1,6 @@
 package formula1.resultsCalculator;
 
-public class RacersLauncher {
+public class RaceLauncher {
 
     public static void main(String[] args) {
         RacersCreator creator = new RacersCreator();

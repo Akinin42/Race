@@ -50,8 +50,7 @@ class RaceResultsFormatterTest {
     @Test
     void format_ShouldReturnFormattedResult_WhenInputSomeRacers() {
         String expected = "01.Sebastian Vettel | FERRARI | 1:04.415\r\n"
-                + "02.Sebastian Vettel | FERRARI | 1:04.415\r\n"
-                + "03.Sebastian Vettel | FERRARI | 1:04.415\r\n";
+                + "02.Sebastian Vettel | FERRARI | 1:04.415\r\n" + "03.Sebastian Vettel | FERRARI | 1:04.415\r\n";
         List<Racer> racers = new ArrayList<>();
         racers.add(new Racer("Sebastian Vettel", "FERRARI", Duration.ofSeconds(64, 415000000)));
         racers.add(new Racer("Sebastian Vettel", "FERRARI", Duration.ofSeconds(64, 415000000)));
