@@ -17,14 +17,16 @@ public class RacersCreator {
             + "[0-9]{2}\\S[0-9]{2}\\S[0-9]{2}\\S[0-9]{3}";
 
     public List<Racer> createRacers(String fileStart, String fileFinish) {
-        if (fileStart == null||fileFinish == null) {
+        if (fileStart == null || fileFinish == null) {
             throw new IllegalArgumentException("File name can't be null!");
         }
         FileReader reader = new FileReader();
+        Map<String, LocalDateTime> abbreviationsStartTime = parseTimesFile(fileStart);
+        Map<String, LocalDateTime> abbreviationsFinishTime = parseTimesFile(fileFinish);
         return reader.read(RACERS).stream()
                 .map(s -> s.split(UNDERSCORE))
                 .map(s -> new Racer(s[1], s[2],
-                        Duration.between(parseTimesFile(fileStart).get(s[0]), parseTimesFile(fileFinish).get(s[0]))))
+                        Duration.between(abbreviationsStartTime.get(s[0]), abbreviationsFinishTime.get(s[0]))))
                 .collect(Collectors.toList());
     }
 
