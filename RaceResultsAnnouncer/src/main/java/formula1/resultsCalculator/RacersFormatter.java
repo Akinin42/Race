@@ -20,7 +20,6 @@ public class RacersFormatter {
         int teamLineLength = Collections.max(racers.stream()
                 .map(Racer::getTeam)
                 .collect(Collectors.toList()), Comparator.comparing(String::length)).length();
-
         return racers.stream()
                 .sorted(Comparator.comparing(Racer::getLapTime))
                 .collect(StringBuilder::new, (result, racer) -> {
@@ -37,11 +36,11 @@ public class RacersFormatter {
     private String formatRacer(Racer inputRacer, int nameLineLength, int teamLineLength) {
         return Stream.of(inputRacer)
                 .collect(StringBuilder::new, (result, racer) -> {
-                    result.append(String.format("%02d.%s", index, racer.getName()));
-                    result.append(FormatUtil.appendSymbolTimes(WHITESPACE, nameLineLength - racer.getName().length()));
-                    result.append(String.format(" | %s", racer.getTeam()));
-                    result.append(FormatUtil.appendSymbolTimes(WHITESPACE, teamLineLength - racer.getTeam().length()));
-                    result.append(String.format(" | %s%n", formatLapTime(racer.getLapTime())));
+                    result.append(String.format("%02d.%s", index, racer.getName()))
+                    .append(FormatUtil.appendSymbolTimes(WHITESPACE, nameLineLength - racer.getName().length()))
+                    .append(String.format(" | %s", racer.getTeam()))
+                    .append(FormatUtil.appendSymbolTimes(WHITESPACE, teamLineLength - racer.getTeam().length()))
+                    .append(String.format(" | %s%n", formatLapTime(racer.getLapTime())));
         }, StringBuilder::append)
                 .toString();
     }
