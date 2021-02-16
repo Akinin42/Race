@@ -1,7 +1,6 @@
 package formula1.resultsCalculator;
 
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ class RacersCreatorTest {
     private RacersCreator creator;
 
     @BeforeEach
-    void createNewCreator() {
+    void init() {
         creator = new RacersCreator();
     }
 
@@ -42,15 +41,5 @@ class RacersCreatorTest {
         expected.add(new Racer("Kevin Magnussen", "HAAS FERRARI", Duration.ofSeconds(73, 393000000)));
         List<Racer> actual = creator.createRacers("start.log", "end.log");
         assertIterableEquals(expected, actual);
-    }
-
-    @Test
-    void parseTimesFile_ShouldThrowIllegalArgumentException_WhenFileIncorrectFormat() {
-        assertThrows(IllegalArgumentException.class, () -> creator.parseTimesFile("incorrectFormat.log"));
-    }
-
-    @Test
-    void createRacers_ShouldThrowIllegalArgumentException_WhenNull() {
-        assertThrows(IllegalArgumentException.class, () -> creator.createRacers(null, null));
     }
 }

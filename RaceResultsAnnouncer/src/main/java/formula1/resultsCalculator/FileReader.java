@@ -22,7 +22,7 @@ public class FileReader {
         try (Stream<String> fileLines = Files.lines(Paths.get(fileURL.toURI()))) {
             return fileLines.collect(Collectors.toList());
         } catch (URISyntaxException | IOException e) {
-            throw new NoFileException("File \"" + fileName + "\" not found exception!");
+            throw new NoFileException("File \"" + fileName + "\" not found!" + e);
         }
     }
 }

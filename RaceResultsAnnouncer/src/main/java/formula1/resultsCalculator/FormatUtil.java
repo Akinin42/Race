@@ -12,7 +12,9 @@ public final class FormatUtil {
             return "";
         }
         StringBuilder result = new StringBuilder();
-        Stream.generate(() -> symbol).limit(length).forEach(result::append);
+        Stream.generate(() -> symbol)
+        .limit(length)
+        .forEach(result::append);
         return result.toString();
     }
 }
