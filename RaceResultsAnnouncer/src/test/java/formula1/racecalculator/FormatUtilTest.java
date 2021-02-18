@@ -1,4 +1,4 @@
-package formula1.resultsCalculator;
+package formula1.racecalculator;
 
 import static org.junit.Assert.assertEquals;
 
