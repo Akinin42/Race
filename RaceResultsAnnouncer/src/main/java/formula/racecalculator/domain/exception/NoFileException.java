@@ -1,9 +1,9 @@
-package formula1.racecalculator;
+package formula.racecalculator.domain.exception;
 
 public class NoFileException extends RuntimeException {
 
     public NoFileException(String messages, Exception e) {
-        super(messages + e.getMessage());
+        super(messages + e);
     }
 
     public NoFileException(String messages) {

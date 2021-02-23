@@ -1,4 +1,4 @@
-package formula1.racecalculator;
+package formula.racecalculator.dao;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -8,14 +8,9 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import formula.racecalculator.domain.exception.NoFileException;
 
 public class FileReader {
-    
-    private FileValidator validator;
-
-    public FileReader(FileValidator validator) {        
-        this.validator = validator;
-    }
 
     public List<String> read(String fileName) {
         if (fileName == null) {
@@ -26,7 +21,7 @@ public class FileReader {
             throw new NoFileException("File \"" + fileName + "\" not in resources!");
         }
         try (Stream<String> fileLines = Files.lines(Paths.get(fileURL.toURI()))) {
-            return validator.validate(fileLines.collect(Collectors.toList()));
+            return fileLines.collect(Collectors.toList());
         } catch (URISyntaxException | IOException e) {
             throw new NoFileException("File \"" + fileName + "\" not found!", e);
         }

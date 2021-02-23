@@ -1,31 +1,48 @@
-package formula1.racecalculator;
+package formula.racecalculator.domain;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import formula.racecalculator.dao.FileReader;
+
 
 class RacersCreatorTest {
 
     private RacersCreator creator;
+    private static final String FILE_NOT_SUIT_TIME_PATTERN = "notsuittimespattern.log";
+    private static final String FILE_NOT_SUIT_ABBREVIATIONS_PATTERN = "notsuitabbreviationspattern.txt";
 
     @BeforeEach
     void init() {
-        creator = new RacersCreator(new FileReader(new FileValidator()));
+        creator = new RacersCreator(new FileReader());
     }
 
     @Test
     void createRacers_ShouldReturnExpectedRacersList() {
         List<Racer> expected = createRacers();
-        List<Racer> actual = creator.createRacers("start.log", "end.log", "abbreviations.txt");
+        List<Racer> actual = creator.getRacers("start.log", "end.log", "abbreviations.txt");
         for (int i = 0; i < expected.size(); i++) {
             assertEquals(expected.get(i).getName(), actual.get(i).getName());
             assertEquals(expected.get(i).getTeam(), actual.get(i).getTeam());
             assertEquals(expected.get(i).getLapTime(), actual.get(i).getLapTime());
         }
+    }
+
+    @Test
+    void createRacers_ShouldThrowIllegalArgumentException_WhenInputNotSuitTimesPattern() {
+        assertThrows(IllegalArgumentException.class,
+                () -> creator.getRacers(FILE_NOT_SUIT_TIME_PATTERN, "end.log", "abbreviations.txt"));
+    }
+
+    @Test
+    void createRacers_ShouldThrowIllegalArgumentException_WhenInputNotSuitAbbreviationsPattern() {
+        assertThrows(IllegalArgumentException.class,
+                () -> creator.getRacers("start.log", "end.log", FILE_NOT_SUIT_ABBREVIATIONS_PATTERN));        
     }
 
     private List<Racer> createRacers() {

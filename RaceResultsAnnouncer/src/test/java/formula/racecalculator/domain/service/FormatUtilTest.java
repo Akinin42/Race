@@ -1,6 +1,6 @@
-package formula1.racecalculator;
+package formula.racecalculator.domain.service;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,6 +24,20 @@ class FormatUtilTest {
     void appendSymbolTimes_ShouldReturnEmptyLine_WhenNegativeNumber() {
         String expected = "";
         String actual = FormatUtil.appendSymbolTimes(' ', -5);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void findNumberLength_ShouldReturnAmountOfDigits_WhenPositiveMultiDigitNumber() {
+        int expected = 2;
+        int actual = FormatUtil.findNumberLength(15);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void findNumberLength_ShouldReturnAmountOfDigits_WhenSingleDigitNumber() {
+        int expected = 1;
+        int actual = FormatUtil.findNumberLength(5);
         assertEquals(expected, actual);
     }
 }
