@@ -32,11 +32,12 @@ class FileReaderTest {
         List<String> actual = reader.read(FILE_SUIT_PATTERN);
         assertEquals(expected, actual);
     }
+
     @Test
     void read_ShouldReturnListStringsFromFile_WhenInputFileContainsLineNotSuitPattern() {
         List<String> expected = new ArrayList<String>();
         expected.add("any text isn't suit pattern");
-        expected.add("but this reader can read it");        
+        expected.add("but this reader can read it");
         List<String> actual = reader.read(FILE_NOT_SUIT_PATTERN);
         assertEquals(expected, actual);
     }
