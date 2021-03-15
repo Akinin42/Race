@@ -1,4 +1,4 @@
-package formula.racecalculator.domain.service;
+package formula.racecalculator.util;
 
 import java.util.stream.Stream;
 

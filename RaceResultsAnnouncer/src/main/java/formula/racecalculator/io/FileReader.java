@@ -1,4 +1,4 @@
-package formula.racecalculator.dao;
+package formula.racecalculator.io;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -8,7 +8,6 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import formula.racecalculator.domain.exception.NoFileException;
 
 public class FileReader {
 

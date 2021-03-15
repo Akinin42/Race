@@ -1,4 +1,4 @@
-package formula.racecalculator.dao;
+package formula.racecalculator.io;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import formula.racecalculator.domain.exception.NoFileException;
 
 class FileReaderTest {
 
@@ -25,7 +24,7 @@ class FileReaderTest {
 
     @Test
     void read_ShouldReturnListStringsFromFile_WhenInputFileSuitPattern() {
-        List<String> expected = new ArrayList<String>();
+        List<String> expected = new ArrayList<>();
         expected.add("SVF2018-05-24_12:02:58.917");
         expected.add("NHR2018-05-24_12:02:49.914");
         expected.add("FAM2018-05-24_12:13:04.512");
@@ -35,7 +34,7 @@ class FileReaderTest {
 
     @Test
     void read_ShouldReturnListStringsFromFile_WhenInputFileContainsLineNotSuitPattern() {
-        List<String> expected = new ArrayList<String>();
+        List<String> expected = new ArrayList<>();
         expected.add("any text isn't suit pattern");
         expected.add("but this reader can read it");
         List<String> actual = reader.read(FILE_NOT_SUIT_PATTERN);

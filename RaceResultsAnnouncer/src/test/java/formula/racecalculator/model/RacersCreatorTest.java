@@ -1,48 +1,53 @@
-package formula.racecalculator.domain;
+package formula.racecalculator.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import formula.racecalculator.dao.FileReader;
-
+import formula.racecalculator.io.FileReader;
 
 class RacersCreatorTest {
 
     private RacersCreator creator;
+    private FileReader reader;
+    List<String> contentStart;
+    List<String> contentFinish;
+    List<String> contentAbbreviations;
     private static final String FILE_NOT_SUIT_TIME_PATTERN = "notsuittimespattern.log";
     private static final String FILE_NOT_SUIT_ABBREVIATIONS_PATTERN = "notsuitabbreviationspattern.txt";
 
     @BeforeEach
     void init() {
-        creator = new RacersCreator(new FileReader());
+        creator = new RacersCreator();
+        reader = new FileReader();
+        contentStart = reader.read("start.log");
+        contentFinish = reader.read("end.log");
+        contentAbbreviations = reader.read("abbreviations.txt");
     }
 
     @Test
-    void createRacers_ShouldReturnExpectedRacersList() {
+    void createRacers_ShouldReturnExpectedRacersList_WhenInputFilesSuitPattern() {
         List<Racer> expected = createRacers();
-        List<Racer> actual = creator.getRacers("start.log", "end.log", "abbreviations.txt");
-        for (int i = 0; i < expected.size(); i++) {
-            assertEquals(expected.get(i).getName(), actual.get(i).getName());
-            assertEquals(expected.get(i).getTeam(), actual.get(i).getTeam());
-            assertEquals(expected.get(i).getLapTime(), actual.get(i).getLapTime());
-        }
+        List<Racer> actual = creator.createRacers(contentStart, contentFinish, contentAbbreviations);
+        assertTrue(racersEquals(expected, actual));
     }
 
     @Test
     void createRacers_ShouldThrowIllegalArgumentException_WhenInputNotSuitTimesPattern() {
+        contentStart = reader.read(FILE_NOT_SUIT_TIME_PATTERN);
         assertThrows(IllegalArgumentException.class,
-                () -> creator.getRacers(FILE_NOT_SUIT_TIME_PATTERN, "end.log", "abbreviations.txt"));
+                () -> creator.createRacers(contentStart, contentFinish, contentAbbreviations));
     }
 
     @Test
     void createRacers_ShouldThrowIllegalArgumentException_WhenInputNotSuitAbbreviationsPattern() {
+        contentAbbreviations = reader.read(FILE_NOT_SUIT_ABBREVIATIONS_PATTERN);
         assertThrows(IllegalArgumentException.class,
-                () -> creator.getRacers("start.log", "end.log", FILE_NOT_SUIT_ABBREVIATIONS_PATTERN));        
+                () -> creator.createRacers(contentStart, contentFinish, contentAbbreviations));
     }
 
     private List<Racer> createRacers() {
@@ -67,5 +72,21 @@ class RacersCreatorTest {
         racers.add(new Racer("Lance Stroll", "WILLIAMS MERCEDES", Duration.ofSeconds(73, 323000000)));
         racers.add(new Racer("Kevin Magnussen", "HAAS FERRARI", Duration.ofSeconds(73, 393000000)));
         return racers;
+    }
+
+    private boolean racersEquals(List<Racer> expected, List<Racer> actual) {
+        boolean result = false;
+        int equalsRacer = 0;
+        for (int i = 0; i < expected.size(); i++) {
+            if (expected.get(i).getName().equals(actual.get(i).getName())
+                    && expected.get(i).getTeam().equals(actual.get(i).getTeam())
+                    && expected.get(i).getLapTime().equals(actual.get(i).getLapTime())) {
+                equalsRacer++;
+            }
+        }
+        if (equalsRacer == expected.size()) {
+            result = true;
+        }
+        return result;
     }
 }

@@ -1,4 +1,4 @@
-package formula.racecalculator.domain.service;
+package formula.racecalculator.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -29,8 +29,15 @@ class FormatUtilTest {
 
     @Test
     void findNumberLength_ShouldReturnAmountOfDigits_WhenPositiveMultiDigitNumber() {
-        int expected = 2;
-        int actual = FormatUtil.findNumberLength(15);
+        int expected = 8;
+        int actual = FormatUtil.findNumberLength(15000000);
+        assertEquals(expected, actual);
+    }
+    
+    @Test
+    void findNumberLength_ShouldReturnAmountOfDigits_WhenNegativeMultiDigitNumber() {
+        int expected = 6;
+        int actual = FormatUtil.findNumberLength(-78945);
         assertEquals(expected, actual);
     }
 

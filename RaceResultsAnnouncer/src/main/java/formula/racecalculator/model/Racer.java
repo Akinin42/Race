@@ -1,4 +1,4 @@
-package formula.racecalculator.domain;
+package formula.racecalculator.model;
 
 import java.time.Duration;
 
