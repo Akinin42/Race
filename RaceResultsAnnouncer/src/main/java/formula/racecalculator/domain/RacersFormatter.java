@@ -1,4 +1,4 @@
-package formula.racecalculator.ui;
+package formula.racecalculator.domain;
 
 import java.time.Duration;
 import java.util.Collections;
@@ -19,6 +19,9 @@ public class RacersFormatter {
     private static final int SEPARATOR_LENGTH = 1;
 
     public String formatRace(List<Racer> racers) {
+        if (racers == null) {
+            throw new IllegalArgumentException("Input list can't be null!");
+        }
         if (racers.isEmpty()) {
             throw new IllegalArgumentException("Input list can't be empty!");
         }

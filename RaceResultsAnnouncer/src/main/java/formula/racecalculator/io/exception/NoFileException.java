@@ -1,6 +1,5 @@
-package formula.racecalculator.io;
+package formula.racecalculator.io.exception;
 
-@SuppressWarnings("serial")
 public class NoFileException extends RuntimeException {
 
     public NoFileException(String messages, Throwable cause) {

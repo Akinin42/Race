@@ -9,6 +9,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import formula.racecalculator.io.exception.NoFileException;
+
 class FileReaderTest {
 
     private FileReader reader;

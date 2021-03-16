@@ -1,4 +1,4 @@
-package formula.racecalculator.ui;
+package formula.racecalculator.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -47,18 +47,14 @@ class RaceFormatterTest {
     }
 
     @Test
-    void formatRace_ShouldReturnFormattedResult_WhenInputContainsCyrillicLetters() {
-        String expected = "01.Игорь Петров |ГАЗ  |1:04.415\r\n" 
-                + "02.Сергей Иванов|ВОЛГА|1:12.013\r\n"
-                + "03.Изя Робинович|КАМАЗ|1:12.434\r\n";
-        String actual = formatter.formatRace(createRacersContainsCyrillicLetters());
-        assertEquals(expected, actual);
-    }
-
-    @Test
     void formatRace_ShouldThrowIllegalArgumentException_WhenInputEmpty() {
         List<Racer> racers = new ArrayList<>();
         assertThrows(IllegalArgumentException.class, () -> formatter.formatRace(racers));
+    }
+
+    @Test
+    void formatRace_ShouldThrowIllegalArgumentException_WhenInputNull() {
+        assertThrows(IllegalArgumentException.class, () -> formatter.formatRace(null));
     }
 
     private List<Racer> createRacers() {
@@ -82,14 +78,6 @@ class RaceFormatterTest {
         racers.add(new Racer("Marcus Ericsson", "SAUBER FERRARI", Duration.ofSeconds(73, 265000000)));
         racers.add(new Racer("Lance Stroll", "WILLIAMS MERCEDES", Duration.ofSeconds(73, 323000000)));
         racers.add(new Racer("Kevin Magnussen", "HAAS FERRARI", Duration.ofSeconds(73, 393000000)));
-        return racers;
-    }
-
-    private List<Racer> createRacersContainsCyrillicLetters() {
-        List<Racer> racers = new ArrayList<>();
-        racers.add(new Racer("Игорь Петров", "ГАЗ", Duration.ofSeconds(64, 415000000)));
-        racers.add(new Racer("Сергей Иванов", "ВОЛГА", Duration.ofSeconds(72, 13000000)));
-        racers.add(new Racer("Изя Робинович", "КАМАЗ", Duration.ofSeconds(72, 434000000)));
         return racers;
     }
 }

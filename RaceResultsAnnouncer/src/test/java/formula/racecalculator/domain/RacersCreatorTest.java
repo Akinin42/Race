@@ -1,4 +1,4 @@
-package formula.racecalculator.model;
+package formula.racecalculator.domain;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -8,15 +8,17 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import formula.racecalculator.io.FileReader;
+import formula.racecalculator.model.Racer;
 
 class RacersCreatorTest {
 
     private RacersCreator creator;
     private FileReader reader;
-    List<String> contentStart;
-    List<String> contentFinish;
-    List<String> contentAbbreviations;
+    private List<String> contentStart;
+    private List<String> contentFinish;
+    private List<String> contentAbbreviations;
     private static final String FILE_NOT_SUIT_TIME_PATTERN = "notsuittimespattern.log";
     private static final String FILE_NOT_SUIT_ABBREVIATIONS_PATTERN = "notsuitabbreviationspattern.txt";
 
@@ -76,16 +78,13 @@ class RacersCreatorTest {
 
     private boolean racersEquals(List<Racer> expected, List<Racer> actual) {
         boolean result = false;
-        int equalsRacer = 0;
-        for (int i = 0; i < expected.size(); i++) {
-            if (expected.get(i).getName().equals(actual.get(i).getName())
-                    && expected.get(i).getTeam().equals(actual.get(i).getTeam())
-                    && expected.get(i).getLapTime().equals(actual.get(i).getLapTime())) {
-                equalsRacer++;
-            }
+        if(expected.size()!=actual.size()) {
+            return false;
         }
-        if (equalsRacer == expected.size()) {
-            result = true;
+        for(int i =0; i<expected.size();i++) {
+            if(expected.get(i).equals(actual.get(i))) {
+                result= true; 
+            }
         }
         return result;
     }
