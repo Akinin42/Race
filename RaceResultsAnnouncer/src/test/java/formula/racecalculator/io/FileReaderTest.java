@@ -6,23 +6,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import formula.racecalculator.io.exception.NoFileException;
 
 class FileReaderTest {
 
-    private FileReader reader;
+    private final FileReader reader = new FileReader();
     private static final String FILE_SUIT_PATTERN = "testfile.log";
     private static final String FILE_NOT_SUIT_PATTERN = "testfilenotpattern.log";
     private static final String EMPTY_FILE = "emptyfile.log";
     private static final String NON_EXISTING_FILE = "nonexisting.log";
-
-    @BeforeEach
-    void init() {
-        reader = new FileReader();
-    }
 
     @Test
     void read_ShouldReturnListStringsFromFile_WhenInputFileSuitPattern() {

@@ -14,18 +14,16 @@ import formula.racecalculator.model.Racer;
 
 class RacersCreatorTest {
 
-    private RacersCreator creator;
-    private FileReader reader;
+    private final RacersCreator creator = new RacersCreator();;
+    private final FileReader reader = new FileReader();
+    private static final String FILE_NOT_SUIT_TIME_PATTERN = "notsuittimespattern.log";
+    private static final String FILE_NOT_SUIT_ABBREVIATIONS_PATTERN = "notsuitabbreviationspattern.txt";
     private List<String> contentStart;
     private List<String> contentFinish;
     private List<String> contentAbbreviations;
-    private static final String FILE_NOT_SUIT_TIME_PATTERN = "notsuittimespattern.log";
-    private static final String FILE_NOT_SUIT_ABBREVIATIONS_PATTERN = "notsuitabbreviationspattern.txt";
 
     @BeforeEach
     void init() {
-        creator = new RacersCreator();
-        reader = new FileReader();
         contentStart = reader.read("start.log");
         contentFinish = reader.read("end.log");
         contentAbbreviations = reader.read("abbreviations.txt");
@@ -78,12 +76,11 @@ class RacersCreatorTest {
 
     private boolean racersEquals(List<Racer> expected, List<Racer> actual) {
         boolean result = false;
-        if(expected.size()!=actual.size()) {
-            return false;
+        if (expected.size() != actual.size()) {
         }
-        for(int i =0; i<expected.size();i++) {
-            if(expected.get(i).equals(actual.get(i))) {
-                result= true; 
+        for (int i = 0; i < expected.size(); i++) {
+            if (expected.get(i).equals(actual.get(i))) {
+                result = true;
             }
         }
         return result;

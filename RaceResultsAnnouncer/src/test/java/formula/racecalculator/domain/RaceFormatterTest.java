@@ -6,19 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import formula.racecalculator.model.Racer;
 
 class RaceFormatterTest {
 
-    private RacersFormatter formatter;
-
-    @BeforeEach
-    void init() {
-        formatter = new RacersFormatter();
-    }
+    private final RacersFormatter formatter = new RacersFormatter();
 
     @Test
     void formatRace_ShouldReturnFormattedResult_WhenInputRacersList() {
