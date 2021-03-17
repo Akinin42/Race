@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-import formula.racecalculator.io.exception.NoFileException;
+import formula.racecalculator.exceptions.NoFileException;
 
 class FileReaderTest {
 

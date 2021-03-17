@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import formula.racecalculator.utils.FormatUtil;
+
 class FormatUtilTest {
 
     @Test
@@ -30,7 +32,7 @@ class FormatUtilTest {
     @Test
     void findNumberLength_ShouldReturnAmountOfDigits_WhenPositiveMultiDigitNumber() {
         int expected = 8;
-        int actual = FormatUtil.findNumberLength(15000000);
+        int actual = FormatUtil.findNumberLength(15_000_000);
         assertEquals(expected, actual);
     }
     

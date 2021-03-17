@@ -1,4 +1,4 @@
-package formula.racecalculator.io.exception;
+package formula.racecalculator.exceptions;
 
 public class NoFileException extends RuntimeException {
 

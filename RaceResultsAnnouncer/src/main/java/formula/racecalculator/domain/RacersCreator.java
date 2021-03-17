@@ -7,8 +7,7 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-import formula.racecalculator.model.Racer;
+import formula.racecalculator.models.Racer;
 
 public class RacersCreator {
 
@@ -16,13 +15,13 @@ public class RacersCreator {
     private static final String DATE_PATTERN = "yyyy-MM-dd_HH:mm:ss.SSS";
 
     public List<Racer> createRacers(List<String> contentStart, List<String> contentFinish,
-            List<String> contentAbbreviations) {
+                                    List<String> contentAbbreviations) {
         try {
-            Map<String, LocalDateTime> startTimes = parseTime(contentStart);
-            Map<String, LocalDateTime> finishTimes = parseTime(contentFinish);
-            return contentAbbreviations.stream()
-                    .map(s -> s.split(UNDERSCORE))
-                    .map(s -> new Racer(s[1], s[2], Duration.between(startTimes.get(s[0]), finishTimes.get(s[0]))))
+            Map<String, LocalDateTime> abbreviationsStartTimes = parseTime(contentStart);
+            Map<String, LocalDateTime> abbreviationsFinishTimes = parseTime(contentFinish);
+            return contentAbbreviations.stream().map(s -> s.split(UNDERSCORE))
+                    .map(s -> new Racer(s[1], s[2],
+                            Duration.between(abbreviationsStartTimes.get(s[0]), abbreviationsFinishTimes.get(s[0]))))
                     .collect(Collectors.toList());
         } catch (DateTimeParseException | ArrayIndexOutOfBoundsException | NullPointerException e) {
             throw new IllegalArgumentException("File content is not valid! ", e);

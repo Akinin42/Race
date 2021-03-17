@@ -6,24 +6,25 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
 import formula.racecalculator.io.FileReader;
-import formula.racecalculator.model.Racer;
+import formula.racecalculator.models.Racer;
 
 class RacersCreatorTest {
 
-    private final RacersCreator creator = new RacersCreator();;
-    private final FileReader reader = new FileReader();
-    private static final String FILE_NOT_SUIT_TIME_PATTERN = "notsuittimespattern.log";
-    private static final String FILE_NOT_SUIT_ABBREVIATIONS_PATTERN = "notsuitabbreviationspattern.txt";
-    private List<String> contentStart;
-    private List<String> contentFinish;
-    private List<String> contentAbbreviations;
+    private static RacersCreator creator;
+    private static FileReader reader;
+    private static String FILE_NOT_SUIT_TIME_PATTERN = "notsuittimespattern.log";
+    private static String FILE_NOT_SUIT_ABBREVIATIONS_PATTERN = "notsuitabbreviationspattern.txt";
+    private static List<String> contentStart;
+    private static List<String> contentFinish;
+    private static List<String> contentAbbreviations;
 
-    @BeforeEach
-    void init() {
+    @BeforeAll
+    static void  init() {
+        creator = new RacersCreator();
+        reader = new FileReader();
         contentStart = reader.read("start.log");
         contentFinish = reader.read("end.log");
         contentAbbreviations = reader.read("abbreviations.txt");
@@ -50,7 +51,7 @@ class RacersCreatorTest {
                 () -> creator.createRacers(contentStart, contentFinish, contentAbbreviations));
     }
 
-    private List<Racer> createRacers() {
+    public static List<Racer> createRacers() {
         List<Racer> racers = new ArrayList<>();
         racers.add(new Racer("Daniel Ricciardo", "RED BULL RACING TAG HEUER", Duration.ofSeconds(72, 13000000)));
         racers.add(new Racer("Sebastian Vettel", "FERRARI", Duration.ofSeconds(64, 415000000)));

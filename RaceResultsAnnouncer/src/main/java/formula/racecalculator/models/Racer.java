@@ -1,6 +1,7 @@
-package formula.racecalculator.model;
+package formula.racecalculator.models;
 
 import java.time.Duration;
+import java.util.Objects;
 
 public class Racer {
 
@@ -28,12 +29,7 @@ public class Racer {
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((lapTime == null) ? 0 : lapTime.hashCode());
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + ((team == null) ? 0 : team.hashCode());
-        return result;
+        return Objects.hash(name, team, lapTime);
     }
 
     @Override
@@ -48,25 +44,13 @@ public class Racer {
             return false;
         }
         Racer other = (Racer) obj;
-        if (lapTime == null) {
-            if (other.lapTime != null) {
-                return false;
-            }
-        } else if (!lapTime.equals(other.lapTime)) {
+        if (!Objects.equals(name, other.name)) {
             return false;
         }
-        if (name == null) {
-            if (other.name != null) {
-                return false;
-            }
-        } else if (!name.equals(other.name)) {
+        if (!Objects.equals(team, other.team)) {
             return false;
         }
-        if (team == null) {
-            if (other.team != null) {
-                return false;
-            }
-        } else if (!team.equals(other.team)) {
+        if (!Objects.equals(lapTime, other.lapTime)) {
             return false;
         }
         return true;

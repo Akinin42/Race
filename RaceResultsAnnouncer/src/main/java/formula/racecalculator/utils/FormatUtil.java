@@ -1,4 +1,4 @@
-package formula.racecalculator.util;
+package formula.racecalculator.utils;
 
 import java.util.stream.Stream;
 
