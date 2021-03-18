@@ -19,7 +19,7 @@ class RacersFormatterTest {
     }
 
     @Test
-    void formatRace_ShouldReturnFormattedResult_WhenInputRacersList() {
+    void createRaceTable_ShouldReturnFormattedResult_WhenInputRacersList() {
         String expected = "01.Sebastian Vettel |FERRARI                  |1:04.415\r\n"
                 + "02.Daniel Ricciardo |RED BULL RACING TAG HEUER|1:12.013\r\n"
                 + "03.Valtteri Bottas  |MERCEDES                 |1:12.434\r\n"
@@ -46,14 +46,14 @@ class RacersFormatterTest {
     }
 
     @Test
-    void formatRace_ShouldReturnEmptyString_WhenInputEmpty() {
+    void createRaceTable_ShouldReturnEmptyString_WhenInputEmpty() {
         String expected = "";
         String actual = formatter.createRaceTable(new ArrayList<>());
         assertEquals(expected, actual);
     }
 
     @Test
-    void formatRace_ShouldThrowIllegalArgumentException_WhenInputNull() {
+    void createRaceTable_ShouldThrowIllegalArgumentException_WhenInputNull() {
         assertThrows(IllegalArgumentException.class, () -> formatter.createRaceTable(null));
     }
 }
