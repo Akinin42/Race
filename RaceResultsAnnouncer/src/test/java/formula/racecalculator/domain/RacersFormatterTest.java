@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import formula.racecalculator.models.Racer;
 
-class RaceFormatterTest {
+class RacersFormatterTest {
 
     private static RacersFormatter formatter;
 
@@ -40,7 +40,7 @@ class RaceFormatterTest {
                 + "17.Marcus Ericsson  |SAUBER FERRARI           |1:13.265\r\n"
                 + "18.Lance Stroll     |WILLIAMS MERCEDES        |1:13.323\r\n"
                 + "19.Kevin Magnussen  |HAAS FERRARI             |1:13.393\r\n";
-        List<Racer> racers = RacersCreatorTest.createRacers();
+        List<Racer> racers = Racers.getTestRacers();
         String actual = formatter.createRaceTable(racers);
         assertEquals(expected, actual);
     }

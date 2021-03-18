@@ -40,17 +40,12 @@ public class Racer {
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (!(obj instanceof Racer)) {
             return false;
         }
         Racer other = (Racer) obj;
-        if (!Objects.equals(name, other.name)) {
-            return false;
-        }
-        if (!Objects.equals(team, other.team)) {
-            return false;
-        }
-        if (!Objects.equals(lapTime, other.lapTime)) {
+        if (!Objects.equals(name, other.name) && !Objects.equals(team, other.team)
+                && !Objects.equals(lapTime, other.lapTime)) {
             return false;
         }
         return true;

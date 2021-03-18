@@ -13,8 +13,8 @@ public final class FormatUtil {
         }
         StringBuilder result = new StringBuilder();
         Stream.generate(() -> symbol)
-        .limit(length)
-        .forEach(result::append);
+                .limit(length)
+                .forEach(result::append);
         return result.toString();
     }
     
