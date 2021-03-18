@@ -40,7 +40,7 @@ class RacersFormatterTest {
                 + "17.Marcus Ericsson  |SAUBER FERRARI           |1:13.265\r\n"
                 + "18.Lance Stroll     |WILLIAMS MERCEDES        |1:13.323\r\n"
                 + "19.Kevin Magnussen  |HAAS FERRARI             |1:13.393\r\n";
-        List<Racer> racers = Racers.getTestRacers();
+        List<Racer> racers = TestUtil.createRacers();
         String actual = formatter.createRaceTable(racers);
         assertEquals(expected, actual);
     }

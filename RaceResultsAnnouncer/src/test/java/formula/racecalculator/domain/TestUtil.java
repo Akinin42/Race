@@ -3,12 +3,11 @@ package formula.racecalculator.domain;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-
 import formula.racecalculator.models.Racer;
 
-public class Racers {
+public class TestUtil {
 
-    public static List<Racer> getTestRacers() {
+    public static List<Racer> createRacers() {
         List<Racer> racers = new ArrayList<>();
         racers.add(new Racer("Daniel Ricciardo", "RED BULL RACING TAG HEUER", Duration.ofSeconds(72, 13000000)));
         racers.add(new Racer("Sebastian Vettel", "FERRARI", Duration.ofSeconds(64, 415000000)));

@@ -33,7 +33,7 @@ class RacersCreatorTest {
 
     @Test
     void createRacers_ShouldReturnExpectedRacersList_WhenInputFilesSuitPattern() {
-        List<Racer> expected = Racers.getTestRacers();
+        List<Racer> expected = TestUtil.createRacers();
         List<Racer> actual = creator.createRacers(contentStart, contentFinish, contentAbbreviations);
         assertEquals(expected, actual);
     }
