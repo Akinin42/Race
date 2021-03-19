@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import formula.racecalculator.io.FileReader;
 import formula.racecalculator.models.Racer;
+import utils.TestUtil;
 
 class RacersCreatorTest {
 
@@ -16,8 +17,6 @@ class RacersCreatorTest {
     private static final String START_FILE = "start.log";
     private static final String FINISH_FILE = "end.log";
     private static final String ABBREVIATIONS_FILE = "abbreviations.txt";
-    private static final String FILE_NOT_SUIT_TIME_PATTERN = "notsuittimespattern.log";
-    private static final String FILE_NOT_SUIT_ABBREVIATIONS_PATTERN = "notsuitabbreviationspattern.txt";
     private static List<String> contentStart;
     private static List<String> contentFinish;
     private static List<String> contentAbbreviations;
@@ -40,14 +39,14 @@ class RacersCreatorTest {
 
     @Test
     void createRacers_ShouldThrowIllegalArgumentException_WhenInputNotSuitTimesPattern() {
-        contentStart = reader.read(FILE_NOT_SUIT_TIME_PATTERN);
+        contentStart = TestUtil.createInvalidTimeLines();
         assertThrows(IllegalArgumentException.class,
                 () -> creator.createRacers(contentStart, contentFinish, contentAbbreviations));
     }
 
     @Test
     void createRacers_ShouldThrowIllegalArgumentException_WhenInputNotSuitAbbreviationsPattern() {
-        contentAbbreviations = reader.read(FILE_NOT_SUIT_ABBREVIATIONS_PATTERN);
+        contentAbbreviations = TestUtil.createInvalidAbbreviationsLines();
         assertThrows(IllegalArgumentException.class,
                 () -> creator.createRacers(contentStart, contentFinish, contentAbbreviations));
     }

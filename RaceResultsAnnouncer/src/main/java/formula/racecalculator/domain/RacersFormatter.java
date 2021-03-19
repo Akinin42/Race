@@ -24,7 +24,7 @@ public class RacersFormatter {
         }
         if (racers.isEmpty()) {
             return "";
-        }
+        }       
         int nameMaxLength = calculateMaxLength(racers, s -> s.getName());
         int teamMaxLength = calculateMaxLength(racers, s -> s.getTeam());
         List<Racer> sortedRacersByTime = racers.stream()
@@ -34,10 +34,10 @@ public class RacersFormatter {
         for (int i = 0; i < sortedRacersByTime.size(); i++) {
             if (i == NUMBER_TOP_RACERS) {
                 result.append(createSeparatedLine(sortedRacersByTime, nameMaxLength, teamMaxLength))
-                .append("\n");
+                        .append("\n");
             }
             result.append(createRacerLine(sortedRacersByTime.get(i), i + 1, nameMaxLength, teamMaxLength));
-        }
+        }       
         return result.toString();
     }
 

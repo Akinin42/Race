@@ -16,10 +16,10 @@ public class RaceLauncher {
         FileReader reader = new FileReader();
         RacersCreator creator = new RacersCreator();
         RacersFormatter formatter = new RacersFormatter();
-        List<String> contentStartLines = reader.read(START_FILE);
-        List<String> contentFinishLines = reader.read(FINISH_FILE);
-        List<String> contentAbbreviationsLines = reader.read(ABBREVIATIONS_FILE);
-        List<Racer> racers = creator.createRacers(contentStartLines, contentFinishLines, contentAbbreviationsLines);
+        List<String> startLines = reader.read(START_FILE);
+        List<String> finishLines = reader.read(FINISH_FILE);
+        List<String> abbreviationsLines = reader.read(ABBREVIATIONS_FILE);
+        List<Racer> racers = creator.createRacers(startLines, finishLines, abbreviationsLines);
         System.out.println(formatter.createRaceTable(racers));
     }
 }

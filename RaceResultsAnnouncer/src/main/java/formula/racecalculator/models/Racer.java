@@ -37,9 +37,6 @@ public class Racer {
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
-            return false;
-        }
         if (!(obj instanceof Racer)) {
             return false;
         }

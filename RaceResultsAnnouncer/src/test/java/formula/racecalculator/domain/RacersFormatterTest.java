@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import formula.racecalculator.models.Racer;
+import utils.TestUtil;
 
 class RacersFormatterTest {
 
@@ -55,5 +56,11 @@ class RacersFormatterTest {
     @Test
     void createRaceTable_ShouldThrowIllegalArgumentException_WhenInputNull() {
         assertThrows(IllegalArgumentException.class, () -> formatter.createRaceTable(null));
+    }
+    
+    @Test
+    void createRaceTable_ShouldThrowNullPointerException_WhenInputContainsInvalidObject() {
+        List<Racer> racers = TestUtil.createInputInvalidObject();
+        assertThrows(NullPointerException.class, () -> formatter.createRaceTable(racers));
     }
 }

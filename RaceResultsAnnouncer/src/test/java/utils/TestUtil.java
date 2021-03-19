@@ -1,4 +1,4 @@
-package formula.racecalculator.domain;
+package utils;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -29,5 +29,23 @@ public class TestUtil {
         racers.add(new Racer("Lance Stroll", "WILLIAMS MERCEDES", Duration.ofSeconds(73, 323000000)));
         racers.add(new Racer("Kevin Magnussen", "HAAS FERRARI", Duration.ofSeconds(73, 393000000)));
         return racers;
+    }
+
+    public static List<String> createInvalidTimeLines() {
+        List<String> invalidTimeLines = new ArrayList<>();
+        invalidTimeLines.add("12:17:58.810");
+        return invalidTimeLines;
+    }
+
+    public static List<String> createInvalidAbbreviationsLines() {
+        List<String> invalidTimeLines = new ArrayList<>();
+        invalidTimeLines.add("Daniel Ricciardo");
+        return invalidTimeLines;
+    }
+
+    public static List<Racer> createInputInvalidObject() {
+        List<Racer> invalidObject = new ArrayList<>();
+        invalidObject.add(new Racer(null, null, null));
+        return invalidObject;
     }
 }
