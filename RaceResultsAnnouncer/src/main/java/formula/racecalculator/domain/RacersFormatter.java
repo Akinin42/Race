@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
 import formula.racecalculator.models.Racer;
 import formula.racecalculator.utils.FormatUtil;
 
@@ -24,11 +23,10 @@ public class RacersFormatter {
         }
         if (racers.isEmpty()) {
             return "";
-        }       
+        }
         int nameMaxLength = calculateMaxLength(racers, s -> s.getName());
         int teamMaxLength = calculateMaxLength(racers, s -> s.getTeam());
-        List<Racer> sortedRacersByTime = racers.stream()
-                .sorted(Comparator.comparing(Racer::getLapTime))
+        List<Racer> sortedRacersByTime = racers.stream().sorted(Comparator.comparing(Racer::getLapTime))
                 .collect(Collectors.toList());
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < sortedRacersByTime.size(); i++) {
@@ -37,7 +35,7 @@ public class RacersFormatter {
                         .append("\n");
             }
             result.append(createRacerLine(sortedRacersByTime.get(i), i + 1, nameMaxLength, teamMaxLength));
-        }       
+        }
         return result.toString();
     }
 
@@ -47,14 +45,13 @@ public class RacersFormatter {
                         .append(FormatUtil.appendSymbolTimes(WHITESPACE, nameMaxLength - racer.getName().length()))
                         .append(String.format("|%s", racer.getTeam()))
                         .append(FormatUtil.appendSymbolTimes(WHITESPACE, teamMaxLength - racer.getTeam().length()))
-                        .append(String.format("|%s%n", formatLapTime(racer.getLapTime()))), StringBuilder::append)
-                        .toString();
+                        .append(String.format("|%s%n", formatLapTime(racer.getLapTime()))),
+                StringBuilder::append).toString();
     }
 
     private String createSeparatedLine(List<Racer> racers, int nameMaxLength, int teamMaxLength) {
-        int division = FormatUtil.findNumberLength(racers.size()) + SEPARATOR_LENGTH + nameMaxLength
-                + SEPARATOR_LENGTH + teamMaxLength + SEPARATOR_LENGTH
-                + formatLapTime(racers.get(NUMBER_TOP_RACERS).getLapTime()).length();
+        int division = FormatUtil.findNumberLength(racers.size()) + SEPARATOR_LENGTH + nameMaxLength + SEPARATOR_LENGTH
+                + teamMaxLength + SEPARATOR_LENGTH + formatLapTime(racers.get(NUMBER_TOP_RACERS).getLapTime()).length();
         return FormatUtil.appendSymbolTimes(HYPHEN, division);
     }
 
@@ -64,8 +61,8 @@ public class RacersFormatter {
     }
 
     private int calculateMaxLength(List<Racer> racers, Function<Racer, String> getField) {
-        return Collections.max(racers.stream()
-                        .map(getField)
-                        .collect(Collectors.toList()), Comparator.comparing(String::length)).length();
+        return Collections
+                .max(racers.stream().map(getField).collect(Collectors.toList()), Comparator.comparing(String::length))
+                .length();
     }
 }

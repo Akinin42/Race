@@ -41,10 +41,7 @@ public class Racer {
             return false;
         }
         Racer other = (Racer) obj;
-        if (!Objects.equals(name, other.name) && !Objects.equals(team, other.team)
-                && !Objects.equals(lapTime, other.lapTime)) {
-            return false;
-        }
-        return true;
+        return (Objects.equals(name, other.name) && Objects.equals(team, other.team)
+                && Objects.equals(lapTime, other.lapTime));
     }
 }

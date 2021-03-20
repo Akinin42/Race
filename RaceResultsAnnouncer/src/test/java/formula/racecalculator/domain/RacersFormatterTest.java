@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import formula.racecalculator.TestUtil;
 import formula.racecalculator.models.Racer;
-import utils.TestUtil;
 
 class RacersFormatterTest {
 
@@ -20,7 +20,7 @@ class RacersFormatterTest {
     }
 
     @Test
-    void createRaceTable_ShouldReturnFormattedResult_WhenInputRacersList() {
+    void createRaceTable_ShouldReturnFormattedResult_WhenInputRacers() {
         String expected = "01.Sebastian Vettel |FERRARI                  |1:04.415\r\n"
                 + "02.Daniel Ricciardo |RED BULL RACING TAG HEUER|1:12.013\r\n"
                 + "03.Valtteri Bottas  |MERCEDES                 |1:12.434\r\n"
@@ -57,10 +57,11 @@ class RacersFormatterTest {
     void createRaceTable_ShouldThrowIllegalArgumentException_WhenInputNull() {
         assertThrows(IllegalArgumentException.class, () -> formatter.createRaceTable(null));
     }
-    
+
     @Test
-    void createRaceTable_ShouldThrowNullPointerException_WhenInputContainsInvalidObject() {
-        List<Racer> racers = TestUtil.createInputInvalidObject();
-        assertThrows(NullPointerException.class, () -> formatter.createRaceTable(racers));
+    void createRaceTable_ShouldThrowNullPointerException_WhenInputInvalidRacers() {
+        List<Racer> invalidRacers = new ArrayList<>();
+        invalidRacers.add(new Racer(null, null, null));
+        assertThrows(NullPointerException.class, () -> formatter.createRaceTable(invalidRacers));
     }
 }
