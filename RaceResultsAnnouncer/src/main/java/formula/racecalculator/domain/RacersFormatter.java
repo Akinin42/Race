@@ -24,8 +24,8 @@ public class RacersFormatter {
         if (racers.isEmpty()) {
             return "";
         }
-        int nameMaxLength = calculateMaxLength(racers, s -> s.getName());
-        int teamMaxLength = calculateMaxLength(racers, s -> s.getTeam());
+        int nameMaxLength = calculateMaxLength(racers, Racer::getName);
+        int teamMaxLength = calculateMaxLength(racers, Racer::getTeam);
         List<Racer> sortedRacersByTime = racers.stream().sorted(Comparator.comparing(Racer::getLapTime))
                 .collect(Collectors.toList());
         StringBuilder result = new StringBuilder();
